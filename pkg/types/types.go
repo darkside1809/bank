@@ -10,6 +10,14 @@ type Category string
 // Currency is currency codes
 type Currency string
 
+// Status is status of payment
+type Status string
+
+const (
+	StatusOk Status = "OK"
+	StatusFail Status = "FAIL"
+	StatusInProgress Status = "INPROGRESS"
+)
 
 // currency codes
 const (
@@ -39,6 +47,7 @@ type Payment struct {
 	ID 			int
 	Amount 		Money
 	Category 	Category
+	Status		Status
 }
 
 // PaymentSource info about card
