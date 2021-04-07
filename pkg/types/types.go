@@ -2,21 +2,21 @@ package types
 
 
 // Money is amount of money in minimal currency amount like: panny, dirams etc.
-type Money int
+type Money int64
 
 // Category is a category that has payment (cars, restaurants and others)
-type Category string
+type PaymentCategory string
 
 // Currency is currency codes
 type Currency string
 
 // Status is status of payment
-type Status string
+type PaymentStatus string
 
 const (
-	StatusOk Status = "OK"
-	StatusFail Status = "FAIL"
-	StatusInProgress Status = "INPROGRESS"
+	PaymentStatusOk 				PaymentStatus = "OK"
+	PaymentStatusFail 			PaymentStatus = "FAIL"
+	PaymentStatusInProgress 	PaymentStatus = "INPROGRESS"
 )
 
 // currency codes
@@ -26,11 +26,10 @@ const (
 	USD Currency = "USD"
 )
 
-//PAN is number of card
+//PAN is number of card, like "5555-xxxx-xxxx-8888"
 type PAN string
 
-
-// Card is information about payment card
+// Card is information about payment card, balance,id etc.
 type Card struct {
 	ID				int
 	PAN			PAN
@@ -42,12 +41,22 @@ type Card struct {
 	Active		bool
 }
 
-//Payment is info about payment
+
+//Payment is information about payment, withdraw, deposit
 type Payment struct {
-	ID 			int
+	ID 			string
 	Amount 		Money
-	Category 	Category
-	Status		Status
+	Category 	PaymentCategory
+	Status		PaymentStatus
+}
+
+type Phone string
+
+// Account is person's account information
+type Account struct {
+	ID int64
+	Phone Phone
+	Balance Money
 }
 
 // PaymentSource info about card
